@@ -6,14 +6,7 @@ jobs:
   laravel:
     name: Laravel (PHP 7.2)
     runs-on: ubuntu-latest
-    env:
-      DB_DATABASE: laravel
-      DB_USERNAME: root
-      DB_PASSWORD: password
-      BROADCAST_DRIVER: log
-      CACHE_DRIVER: redis
-      QUEUE_CONNECTION: redis
-      SESSION_DRIVER: redis
+
     services:
       mysql:
         image: mysql:5.7
@@ -49,6 +42,4 @@ jobs:
       - name: Run tests
         run: ./vendor/bin/phpunit
         env:
-          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
-          REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
           APP_ENV: testing
